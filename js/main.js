@@ -58,7 +58,7 @@
 
   star.className = `star ${randomColor}`;
 
-    const size = Math.random() * 6 + 6;
+    const size = Math.random() * 10 + 10;
 
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
