@@ -25,3 +25,61 @@
 
   revealEls.forEach((el) => observer.observe(el));
 })();
+/* ===== Golden Cursor Stars ===== */
+
+(function () {
+  const container = document.querySelector(".cursor-stars");
+
+  if (!container) return;
+
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReduced) return;
+
+  let lastSpawn = 0;
+  const STAR_INTERVAL = 35;
+  const MAX_STARS = 45;
+
+  function createStar(x, y) {
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    const size = Math.random() * 6 + 6;
+
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    star.style.left = `${x}px`;
+    star.style.top = `${y}px`;
+
+    const offsetX = (Math.random() - 0.5) * 16;
+    const offsetY = (Math.random() - 0.5) * 16;
+
+    star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+
+    container.appendChild(star);
+
+    if (container.children.length > MAX_STARS) {
+      container.removeChild(container.firstChild);
+    }
+
+    setTimeout(() => {
+      star.remove();
+    }, 900);
+  }
+
+  window.addEventListener("mousemove", (e) => {
+    const now = performance.now();
+
+    if (now - lastSpawn < STAR_INTERVAL) return;
+
+    lastSpawn = now;
+
+    if (Math.random() > 0.45) return;
+
+    createStar(e.clientX, e.clientY);
+  });
+})();

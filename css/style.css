@@ -861,3 +861,68 @@ body {
     text-align: center;
   }
 }
+/* ===== Golden Cursor Stars ===== */
+
+.cursor-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.star {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 230, 150, 1) 0%,
+    rgba(245, 199, 107, 0.95) 35%,
+    rgba(245, 199, 107, 0) 75%
+  );
+
+  clip-path: polygon(
+    50% 0%,
+    61% 38%,
+    100% 50%,
+    61% 62%,
+    50% 100%,
+    39% 62%,
+    0% 50%,
+    39% 38%
+  );
+
+  filter: blur(0.3px);
+
+  box-shadow:
+    0 0 6px rgba(245, 199, 107, 0.9),
+    0 0 12px rgba(245, 199, 107, 0.55),
+    0 0 20px rgba(245, 199, 107, 0.2);
+
+  opacity: 0;
+
+  animation: starFade 900ms ease-out forwards;
+}
+
+@keyframes starFade {
+  0% {
+    opacity: 0;
+    transform:
+      scale(0.4)
+      rotate(0deg)
+      translateY(0px);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      scale(1.4)
+      rotate(120deg)
+      translateY(-18px);
+  }
+}
