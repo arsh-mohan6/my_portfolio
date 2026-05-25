@@ -904,7 +904,72 @@ body {
 
   animation: starFade 900ms ease-out forwards;
 }
+/* ===== Star Colors ===== */
 
+.star.gold {
+  background: radial-gradient(
+    circle,
+    rgba(255, 230, 150, 1) 0%,
+    rgba(245, 199, 107, 0.95) 35%,
+    rgba(245, 199, 107, 0) 75%
+  );
+
+  box-shadow:
+    0 0 6px rgba(245, 199, 107, 0.9),
+    0 0 14px rgba(245, 199, 107, 0.6);
+}
+
+.star.blue {
+  background: radial-gradient(
+    circle,
+    rgba(120, 180, 255, 1) 0%,
+    rgba(59, 130, 246, 0.9) 35%,
+    rgba(59, 130, 246, 0) 75%
+  );
+
+  box-shadow:
+    0 0 6px rgba(59, 130, 246, 0.9),
+    0 0 14px rgba(59, 130, 246, 0.6);
+}
+
+.star.violet {
+  background: radial-gradient(
+    circle,
+    rgba(210, 170, 255, 1) 0%,
+    rgba(168, 85, 247, 0.9) 35%,
+    rgba(168, 85, 247, 0) 75%
+  );
+
+  box-shadow:
+    0 0 6px rgba(168, 85, 247, 0.9),
+    0 0 14px rgba(168, 85, 247, 0.6);
+}
+
+.star.white {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(220, 220, 220, 0.9) 35%,
+    rgba(255, 255, 255, 0) 75%
+  );
+
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.9),
+    0 0 14px rgba(255, 255, 255, 0.5);
+}
+
+.star.cyan {
+  background: radial-gradient(
+    circle,
+    rgba(120, 255, 255, 1) 0%,
+    rgba(34, 211, 238, 0.9) 35%,
+    rgba(34, 211, 238, 0) 75%
+  );
+
+  box-shadow:
+    0 0 6px rgba(34, 211, 238, 0.9),
+    0 0 14px rgba(34, 211, 238, 0.5);
+}
 @keyframes starFade {
   0% {
     opacity: 0;

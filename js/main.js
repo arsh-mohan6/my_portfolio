@@ -39,13 +39,24 @@
   if (prefersReduced) return;
 
   let lastSpawn = 0;
-  const STAR_INTERVAL = 35;
-  const MAX_STARS = 45;
+  const STAR_INTERVAL = 18;
+  const MAX_STARS = 90;
 
   function createStar(x, y) {
     const star = document.createElement("div");
 
-    star.className = "star";
+    const colors = [
+      "gold",
+      "blue",
+      "violet",
+      "white",
+      "cyan",
+    ];
+
+  const randomColor =
+    colors[Math.floor(Math.random() * colors.length)];
+
+  star.className = `star ${randomColor}`;
 
     const size = Math.random() * 6 + 6;
 
