@@ -25,7 +25,8 @@
 
   revealEls.forEach((el) => observer.observe(el));
 })();
-/* ===== Golden Cursor Stars ===== */
+
+/* ===== Luxury Cursor Stars ===== */
 
 (function () {
   const container = document.querySelector(".cursor-stars");
@@ -39,8 +40,9 @@
   if (prefersReduced) return;
 
   let lastSpawn = 0;
-  const STAR_INTERVAL = 18;
-  const MAX_STARS = 90;
+
+  const STAR_INTERVAL = 8;
+  const MAX_STARS = 180;
 
   function createStar(x, y) {
     const star = document.createElement("div");
@@ -53,10 +55,10 @@
       "cyan",
     ];
 
-  const randomColor =
-    colors[Math.floor(Math.random() * colors.length)];
+    const randomColor =
+      colors[Math.floor(Math.random() * colors.length)];
 
-  star.className = `star ${randomColor}`;
+    star.className = `star ${randomColor}`;
 
     const size = Math.random() * 10 + 10;
 
@@ -66,10 +68,12 @@
     star.style.left = `${x}px`;
     star.style.top = `${y}px`;
 
-    const offsetX = (Math.random() - 0.5) * 16;
-    const offsetY = (Math.random() - 0.5) * 16;
+    const offsetX = (Math.random() - 0.5) * 34;
+    const offsetY = (Math.random() - 0.5) * 34;
 
-    star.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    star.style.transform = `
+      translate(${offsetX}px, ${offsetY}px)
+    `;
 
     container.appendChild(star);
 
@@ -79,8 +83,10 @@
 
     setTimeout(() => {
       star.remove();
-    }, 900);
+    }, 1100);
   }
+
+  /* ===== Mouse Stars ===== */
 
   window.addEventListener("mousemove", (e) => {
     const now = performance.now();
@@ -89,8 +95,23 @@
 
     lastSpawn = now;
 
-    if (Math.random() > 0.45) return;
+    if (Math.random() > 0.12) return;
 
     createStar(e.clientX, e.clientY);
+  });
+
+  /* ===== Scroll Stars ===== */
+
+  window.addEventListener("scroll", () => {
+    const x = window.innerWidth * 0.5;
+
+    const y = window.innerHeight * 0.5;
+
+    for (let i = 0; i < 3; i++) {
+      createStar(
+        x + (Math.random() - 0.5) * 120,
+        y + (Math.random() - 0.5) * 120
+      );
+    }
   });
 })();
