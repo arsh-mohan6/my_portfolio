@@ -41,7 +41,7 @@
 
   let lastSpawn = 0;
 
-  const STAR_INTERVAL = 8;
+  const STAR_INTERVAL = 14;
   const MAX_STARS = 180;
 
   function createStar(x, y) {
@@ -95,23 +95,15 @@
 
     lastSpawn = now;
 
-    if (Math.random() > 0.12) return;
+    const starCount = 2;
 
-    createStar(e.clientX, e.clientY);
-  });
-
-  /* ===== Scroll Stars ===== */
-
-  window.addEventListener("scroll", () => {
-    const x = window.innerWidth * 0.5;
-
-    const y = window.innerHeight * 0.5;
-
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < starCount; i++) {
       createStar(
-        x + (Math.random() - 0.5) * 120,
-        y + (Math.random() - 0.5) * 120
+        e.clientX + (Math.random() - 0.5) * 18,
+        e.clientY + (Math.random() - 0.5) * 18
       );
     }
-  });
+});
+
+  /* ===== Scroll Stars ===== */
 })();
