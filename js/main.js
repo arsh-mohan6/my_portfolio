@@ -49,10 +49,10 @@
 
     const colors = [
       "gold",
-      "blue",
-      "violet",
+      "gold",
+      "gold",
       "white",
-      "cyan",
+      "blue",
     ];
 
     const randomColor =
@@ -60,7 +60,7 @@
 
     star.className = `star ${randomColor}`;
 
-    const size = Math.random() * 10 + 10;
+    const size = Math.random() * 4 + 5;
 
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
@@ -87,22 +87,29 @@
   }
 
   /* ===== Mouse Stars ===== */
-
+  let lastX = 0;
+  let lastY = 0;
   window.addEventListener("mousemove", (e) => {
-    const now = performance.now();
+  const dx = e.clientX - lastX;
+  const dy = e.clientY - lastY;
 
-    if (now - lastSpawn < STAR_INTERVAL) return;
+  const distance = Math.sqrt(dx * dx + dy * dy);
 
-    lastSpawn = now;
+  if (distance < 12) return;
 
-    const starCount = 2;
+  lastX = e.clientX;
+  lastY = e.clientY;
 
-    for (let i = 0; i < starCount; i++) {
-      createStar(
-        e.clientX + (Math.random() - 0.5) * 18,
-        e.clientY + (Math.random() - 0.5) * 18
-      );
-    }
+  const now = performance.now();
+
+  if (now - lastSpawn < STAR_INTERVAL) return;
+
+  lastSpawn = now;
+
+  createStar(
+    e.clientX + (Math.random() - 0.5) * 10,
+    e.clientY + (Math.random() - 0.5) * 10
+  );
 });
 
   /* ===== Scroll Stars ===== */
