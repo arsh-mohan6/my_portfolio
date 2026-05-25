@@ -26,7 +26,7 @@
   revealEls.forEach((el) => observer.observe(el));
 })();
 
-/* ===== Luxury Cursor Stars ===== */
+/* ===== Cosmic Cursor Trail ===== */
 
 (function () {
   const container = document.querySelector(".cursor-stars");
@@ -41,17 +41,22 @@
 
   let lastSpawn = 0;
 
-  const STAR_INTERVAL = 14;
+  let lastX = 0;
+  let lastY = 0;
+
+  const STAR_INTERVAL = 10;
   const MAX_STARS = 180;
 
   function createStar(x, y) {
     const star = document.createElement("div");
 
+    /* ===== Color Weight ===== */
+
     const colors = [
-      "gold",
-      "gold",
-      "gold",
       "white",
+      "white",
+      "gold",
+      "gold",
       "blue",
     ];
 
@@ -60,7 +65,23 @@
 
     star.className = `star ${randomColor}`;
 
-    const size = Math.random() * 4 + 5;
+    /* ===== Rare Twinkle ===== */
+
+    if (Math.random() > 0.94) {
+      star.classList.add("twinkle");
+    }
+
+    /* ===== Size Variation ===== */
+
+    const rand = Math.random();
+
+    let size = 2;
+
+    if (rand > 0.92) {
+      size = 5;
+    } else if (rand > 0.7) {
+      size = 3.5;
+    }
 
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
@@ -68,8 +89,10 @@
     star.style.left = `${x}px`;
     star.style.top = `${y}px`;
 
-    const offsetX = (Math.random() - 0.5) * 34;
-    const offsetY = (Math.random() - 0.5) * 34;
+    /* ===== Smooth Spread ===== */
+
+    const offsetX = (Math.random() - 0.5) * 14;
+    const offsetY = (Math.random() - 0.5) * 14;
 
     star.style.transform = `
       translate(${offsetX}px, ${offsetY}px)
@@ -87,30 +110,27 @@
   }
 
   /* ===== Mouse Stars ===== */
-  let lastX = 0;
-  let lastY = 0;
+
   window.addEventListener("mousemove", (e) => {
-  const dx = e.clientX - lastX;
-  const dy = e.clientY - lastY;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
 
-  const distance = Math.sqrt(dx * dx + dy * dy);
+    const distance = Math.sqrt(dx * dx + dy * dy);
 
-  if (distance < 12) return;
+    if (distance < 12) return;
 
-  lastX = e.clientX;
-  lastY = e.clientY;
+    lastX = e.clientX;
+    lastY = e.clientY;
 
-  const now = performance.now();
+    const now = performance.now();
 
-  if (now - lastSpawn < STAR_INTERVAL) return;
+    if (now - lastSpawn < STAR_INTERVAL) return;
 
-  lastSpawn = now;
+    lastSpawn = now;
 
-  createStar(
-    e.clientX + (Math.random() - 0.5) * 10,
-    e.clientY + (Math.random() - 0.5) * 10
-  );
-});
-
-  /* ===== Scroll Stars ===== */
+    createStar(
+      e.clientX + (Math.random() - 0.5) * 10,
+      e.clientY + (Math.random() - 0.5) * 10
+    );
+  });
 })();
